@@ -160,7 +160,7 @@ class Menu {
 			foreach($items as $key => $val)
 			{
  				$id = (is_array($val) AND !empty($val['id'])) ? $val['id'] : trim($key);
-				$defaults[$key] = array('id' => $id, 'label' => '', 'location' => $key, 'attributes' => array(), 'active' => NULL, 'parent_id' => $this->root_value, 'hidden' => FALSE);
+				$defaults[$key] = array('id' => $id, 'label' => '', 'location' => $key, 'attributes' => array(), 'active' => NULL, 'parent_id' => $this->root_value, 'hidden' => FALSE, 'blank' => FALSE);
 				if (!is_array($val)) 
 				{
 					$val = array('id' => $key, 'label' => $val);
@@ -403,12 +403,17 @@ class Menu {
 
 				foreach($filtered_menu as $key => $val)
 				{
+          
 					$str .= $this->_create_open_li($val, $level, $i, ($i == (count($filtered_menu) -1)));
 					$subitems = $this->_get_menu_items($val['id']);
 
+
+          
 					if (!empty($subitems))
 					{
+                   
 						$str .= $this->_render_basic($subitems, $level);
+
 					}
 					if (!empty($this->item_tag))
 					{
@@ -416,6 +421,7 @@ class Menu {
 					}
 					$i++;
 				}
+
 				if (!empty($this->container_tag)) $str .= str_repeat("\t", $level)."</".$this->container_tag.">\n".str_repeat("\t", $level);
 				
 			}
@@ -505,7 +511,7 @@ class Menu {
 					$str .= anchor($val['location'], $label, $val['attributes']);
 					if (!empty($subitems))
 					{
-						$str .= $this->_render_collabsible($subitems, $level);
+              $str .= $this->_render_collabsible($subitems, $level);
 					}
 					if (!empty($this->item_tag))
 					{
@@ -837,7 +843,9 @@ class Menu {
 			$str .= $this->_get_li_classes($val, $level, $i, $is_last);
 			$str .= '>';
 		}
-		$str .= $this->_create_link($val);
+    if (!$val['blank']) {
+      $str .= $this->_create_link($val);
+    }
 		return $str;
 	}
 	
@@ -989,8 +997,9 @@ class Menu {
 		{
 			$active_items = array();
 		}
+    
 
-		if (isset($this->_items[$active]))
+		if ( isset($this->_items[$active]))
 		{
 			$active_parent = $this->_items[$active]['parent_id'];
 
@@ -1004,7 +1013,7 @@ class Menu {
 		{
 			return;
 		}
-		
+
 		if (!in_array($active, $active_items)) $active_items[] = $active;
 
 		foreach($this->_items as $key => $val)
