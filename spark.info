@@ -3,7 +3,7 @@
 
 # This is the spark name. This should be the registered name of the spark.
 #  It's only used for informational purposes.
-name: fuel_menu
+name: menu_improved
 
 # This is the current version of this spark. All sparks should be in
 #  x.x.x format. Validation will fail otherwise. This is the version
