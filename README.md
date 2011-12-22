@@ -38,7 +38,7 @@ To create a menu, you must populate an array with the menu items. Then you can o
 
 ### The Menu Array Structure
 
-The menu array can hav the following key/value pairs:
+The menu array can have the following key/value pairs:
 
 * id - the id value of the menu item. If none is specified, then the array key value will be used
 * parent_id - the parent's id value that the menu item should reside under. Top level (also called root items), should have a root value of NULL or 0 depending on what is specified for the root_value
@@ -47,7 +47,7 @@ The menu array can hav the following key/value pairs:
 * attributes - additional HTML link attributes (e.g. target="_blank") to assign to the menu item
 * hidden - whether to display the menu item or not.
 * active - a regular expression that determines whether it should be given active status. If none is specified, it will be the same as the location value (e.g. about/history$|about/contact$). You can also use the :children active magic selector, which will highlight a menu item if it or any of it's sub pages are active. For example, if you have a news page, it allows you to easily highlight the news in the menu for all URI locations of news and news/:children (translates to news$|news/.+ in regular expression).
-
+* blank - a Boolean statement to insert a blank element, normally used for caps on a list menu
 
 ## Credits
 - Original developer: David McReynolds @ Daylight Studio
