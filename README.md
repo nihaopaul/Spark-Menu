@@ -10,7 +10,7 @@ This library is capable of outputting standard collapsable menus with helper cla
 
 To create a menu, you must populate an array with the menu items. Then you can output structured HTML suitable for standard navigation by calling the render method. Here's an example:
 
-	$this->load->spark('menu/0.0.1');
+	$this->load->spark('menu-improved/1.0.0');
 	$nav = array();
 	$nav['about'] = 'About';
 	$nav['about/history'] = array('label' => 'History', 'parent_id' => 'about');
@@ -20,6 +20,9 @@ To create a menu, you must populate an array with the menu items. Then you can o
 	$nav['products/X3000'] = array('label' => 'X3000', 'parent_id' => 'products');
 	 
 	$active = 'about/history';
+
+	$nav['blank-holder'] = array('blank' => TRUE);
+
 	$menu = $this->menu->render($nav, $active, NULL, 'basic');
 	 
 	echo $menu;
@@ -52,3 +55,4 @@ The menu array can have the following key/value pairs:
 ## Credits
 - Original developer: David McReynolds @ Daylight Studio
 - Repackaged by: Barnabas Kendall (barnabas@bkendall.biz)
+- blank added by: paul adams @ chaos studio
